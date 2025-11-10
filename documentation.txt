@@ -1,0 +1,36 @@
+Student Records Manager - Documentation
+
+Problem Statement
+Manual student record handling is error-prone and inefficient. This project provides a client-side web application to Create, Read, Update, and Delete student records persistently using IndexedDB.
+
+Objectives
+- Build a CRUD web app to manage student data.
+- Use JavaScript and DOM APIs to display and manipulate data dynamically.
+- Validate form inputs (unique Student ID, valid email, no empty fields).
+- Persist data locally using IndexedDB.
+- Provide search, sort, and confirmation prompts for operations.
+
+Features Implemented
+- Create: Add student via form. Student ID is the unique primary key (IndexedDB).
+- Read: All records are displayed in a dynamic table.
+- Update: Edit button loads data into form for editing. Student ID is not editable during update to preserve key integrity. Updates are saved to IndexedDB immediately.
+- Delete: Delete button removes the record after confirmation.
+- Validation: All fields required; email format validated; Student ID uniqueness enforced when adding.
+- Additional: Search box filters by ID, Course, or Year Level. Sorting by Student ID or Name (asc/desc). Simple, responsive CSS styling. Confirmation prompts for update/delete.
+
+Challenges & Debugging Experience
+- Ensuring Student ID uniqueness: solved by setting studentId as the objectStore keyPath and explicitly checking existence before adds to provide user-friendly messages.
+- IndexedDB async flow: wrapped operations in promises where needed and used onsuccess/ onerror handlers to debug transaction failures.
+- Preventing accidental key change during edit: disabled Student ID input while editing to avoid complexities of moving keys between records.
+- Debugging tips: use console.log and inspect IndexedDB in browser devtools (Application tab) to verify store contents.
+
+How to run
+1. Place all files in the same folder.
+2. Open index.html in a modern browser (Chrome, Edge, Firefox).
+3. Use the form to add, edit, and remove student records. Data persists in the browser's IndexedDB.
+
+Notes
+- This is a client-side demo; data is local to the browser and device.
+- To reset data, clear the site storage via browser devtools.
+
+End of document.
