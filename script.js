@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let db;
   let editingId = null;
 
-  // DOM elements (now safe to query)
+ 
   const form = document.getElementById('studentForm');
   const nameInput = document.getElementById('name');
   const idInput = document.getElementById('id');
@@ -14,10 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const studentTable = document.getElementById('studentTable');
   const searchInput = document.getElementById('search');
 
-  // disable form until DB ready
+
   setFormEnabled(false);
 
-  // open DB
+  
   const openRequest = indexedDB.open("StudentDB", 1);
 
   openRequest.onupgradeneeded = function (event) {
@@ -42,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
     alert('Failed to open database.');
   };
 
-  // helper to enable/disable form controls
+
   function setFormEnabled(enabled) {
     [nameInput, idInput, courseInput, yearInput, emailInput, saveBtn].forEach(el => {
       if (el) el.disabled = !enabled;
@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cancelBtn) cancelBtn.disabled = !enabled;
   }
 
-  // Add or Update student
+  
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     if (!db) return alert('Database not ready.');
@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('Error validating Student ID.');
       };
     } else {
-      // UPDATE
+     
       const tx = db.transaction(["students"], "readwrite");
       const store = tx.objectStore("students");
       const putReq = store.put(student);
@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // display students
+ 
   function displayStudents() {
     if (!db) return;
     const tx = db.transaction(['students'], 'readonly');
@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 
-  // edit
+ 
   function editStudent(id) {
     if (!db) return;
     const tx = db.transaction(['students'], 'readonly');
@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 
-  // delete
+ 
   function deleteStudent(id) {
     if (!db) return;
     if (!confirm('Are you sure you want to delete this record?')) return;
@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   }
 
-  // cancel edit
+
   if (cancelBtn) {
     cancelBtn.addEventListener('click', () => {
       editingId = null;
@@ -220,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // search
+  
   searchInput.addEventListener('input', function () {
     if (!db) return;
     const query = (this.value || '').toLowerCase();
@@ -270,3 +270,4 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   });
 });
+
