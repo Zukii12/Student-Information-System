@@ -75,7 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const student = { name, id, course, year, email };
 
     if (!editingId) {
-      // ADD: check uniqueness first
       const checkTx = db.transaction(["students"], "readonly");
       const checkStore = checkTx.objectStore("students");
       const getReq = checkStore.get(id);
@@ -270,4 +269,5 @@ document.addEventListener('DOMContentLoaded', () => {
     };
   });
 });
+
 
